@@ -1,0 +1,274 @@
+const ADMIN_ID = "admin";
+const ADMIN_PASSWORD = "J-Flag{admin_PW}";
+const PRICE_FLAG = "J-Flag{price_tampering}";
+const STOCK_FLAG = "J-Flag{sold_out}";
+const INITIAL_PRODUCT = {
+  price: 5000,
+  stock: 100
+};
+const productStorageVersion = 2;
+
+const productKey = "juntendoCampusShopProduct";
+const loginKey = "juntendoCampusShopAdminLoggedIn";
+
+document.addEventListener("DOMContentLoaded", () => {
+  setupNavigation();
+
+  const page = document.body.dataset.page;
+  if (page === "login") setupLoginPage();
+  if (page === "admin") setupAdminPage();
+  if (page === "shop") setupShopPage();
+  if (page === "home") setupFlagForm();
+});
+
+function setupNavigation() {
+  const toggle = document.querySelector(".nav-toggle");
+  const nav = document.querySelector("#site-nav");
+  if (!toggle || !nav) return;
+
+  toggle.addEventListener("click", () => {
+    const isOpen = nav.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", String(isOpen));
+  });
+}
+
+function getDefaultProductState() {
+  return { ...INITIAL_PRODUCT, version: productStorageVersion };
+}
+
+function normalizeProductState(parsed) {
+  if (!parsed || parsed.version !== productStorageVersion) return null;
+
+  const price = Number(parsed.price);
+  const stock = Number(parsed.stock);
+  if (!Number.isInteger(price) || price < 0) return null;
+  if (!Number.isInteger(stock) || stock < 0) return null;
+
+  return { price, stock, version: productStorageVersion };
+}
+
+function getProductState() {
+  const stored = localStorage.getItem(productKey);
+  if (!stored) {
+    const defaultState = getDefaultProductState();
+    saveProductState(defaultState);
+    return defaultState;
+  }
+
+  try {
+    const parsed = JSON.parse(stored);
+    const normalized = normalizeProductState(parsed);
+    if (normalized) return normalized;
+  } catch {
+  }
+
+  const defaultState = getDefaultProductState();
+  saveProductState(defaultState);
+  return defaultState;
+}
+
+function saveProductState(state) {
+  localStorage.setItem(productKey, JSON.stringify({
+    price: state.price,
+    stock: state.stock,
+    version: productStorageVersion
+  }));
+}
+
+function resetProductState() {
+  localStorage.removeItem(productKey);
+}
+
+function setupLoginPage() {
+  const form = document.querySelector("#login-form");
+  const message = document.querySelector("#login-message");
+  if (!form || !message) return;
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const id = document.querySelector("#login-id").value.trim();
+    const password = document.querySelector("#login-password").value.trim();
+
+    if (id === ADMIN_ID && password === ADMIN_PASSWORD) {
+      sessionStorage.setItem(loginKey, "true");
+      message.textContent = "ログイン成功。管理者ページへ移動します。";
+      message.className = "message success";
+      window.location.href = "groupC-admin.html";
+      return;
+    }
+
+    message.textContent = "IDまたはパスワードが違います";
+    message.className = "message error";
+  });
+}
+
+function setupAdminPage() {
+  const loggedIn = sessionStorage.getItem(loginKey) === "true";
+  const status = document.querySelector("#admin-login-status");
+
+  if (!loggedIn) {
+    window.location.replace("groupC-login.html");
+    return;
+  }
+
+  if (status) {
+    status.textContent = "管理者としてログイン中。問題1のフラグ：" + ADMIN_PASSWORD;
+    status.className = "message success";
+  }
+
+  renderAdminProduct();
+  setupPriceForm();
+  setupStockForm();
+  setupResetButton();
+  setupLogoutButton();
+}
+
+function renderAdminProduct() {
+  const product = getProductState();
+  const price = document.querySelector("#admin-current-price");
+  const stock = document.querySelector("#admin-current-stock");
+  const priceInput = document.querySelector("#new-price");
+  const stockInput = document.querySelector("#new-stock");
+  const soldout = document.querySelector("#admin-soldout");
+
+  if (price) price.textContent = String(product.price);
+  if (stock) stock.textContent = String(product.stock);
+  if (priceInput) priceInput.value = String(product.price);
+  if (stockInput) stockInput.value = String(product.stock);
+  if (soldout) soldout.classList.toggle("hidden", product.stock !== 0);
+}
+
+function setupPriceForm() {
+  const form = document.querySelector("#price-form");
+  const input = document.querySelector("#new-price");
+  const message = document.querySelector("#price-message");
+  if (!form || !input || !message) return;
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const nextPrice = Number(input.value);
+
+    if (!Number.isInteger(nextPrice) || nextPrice < 0) {
+      message.textContent = "0以上の整数を入力してください。";
+      message.className = "message error";
+      return;
+    }
+
+    const product = getProductState();
+    product.price = nextPrice;
+    saveProductState(product);
+    renderAdminProduct();
+
+    if (nextPrice === 0) {
+      message.textContent = "価格を0円に更新しました。フラグ：" + PRICE_FLAG;
+      message.className = "message success";
+    } else {
+      message.textContent = "価格を" + nextPrice + "円に更新しました。";
+      message.className = "message success";
+    }
+  });
+}
+
+function setupStockForm() {
+  const form = document.querySelector("#stock-form");
+  const input = document.querySelector("#new-stock");
+  const message = document.querySelector("#stock-message");
+  if (!form || !input || !message) return;
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const nextStock = Number(input.value);
+
+    if (!Number.isInteger(nextStock) || nextStock < 0) {
+      message.textContent = "0以上の整数を入力してください。";
+      message.className = "message error";
+      return;
+    }
+
+    const product = getProductState();
+    product.stock = nextStock;
+    saveProductState(product);
+    renderAdminProduct();
+
+    if (nextStock === 0) {
+      message.textContent = "在庫を0個に更新しました。売り切れ、購入できません。フラグ：" + STOCK_FLAG;
+      message.className = "message success";
+    } else {
+      message.textContent = "在庫を" + nextStock + "個に更新しました。";
+      message.className = "message success";
+    }
+  });
+}
+
+function setupResetButton() {
+  const button = document.querySelector("#reset-button");
+  if (!button) return;
+
+  button.addEventListener("click", () => {
+    resetProductState();
+    renderAdminProduct();
+
+    const priceMessage = document.querySelector("#price-message");
+    const stockMessage = document.querySelector("#stock-message");
+    if (priceMessage) priceMessage.textContent = "";
+    if (stockMessage) stockMessage.textContent = "";
+  });
+}
+
+function setupLogoutButton() {
+  const button = document.querySelector("#logout-button");
+  if (!button) return;
+
+  button.addEventListener("click", () => {
+    sessionStorage.removeItem(loginKey);
+    window.location.href = "groupC-login.html";
+  });
+}
+
+function setupShopPage() {
+  const product = getProductState();
+  const price = document.querySelector("#shop-price");
+  const lowStock = document.querySelector("#shop-low-stock");
+  const soldout = document.querySelector("#shop-soldout");
+  const buyButton = document.querySelector("#buy-button");
+
+  if (price) price.textContent = String(product.price);
+
+  const isSoldOut = product.stock === 0;
+  const isLowStock = product.stock >= 1 && product.stock <= 10;
+  if (lowStock) lowStock.classList.toggle("hidden", !isLowStock);
+  if (soldout) soldout.classList.toggle("hidden", !isSoldOut);
+  if (buyButton) {
+    buyButton.disabled = isSoldOut;
+    buyButton.textContent = isSoldOut ? "購入できません" : "購入する";
+    buyButton.classList.toggle("secondary", isSoldOut);
+    buyButton.classList.toggle("primary", !isSoldOut);
+  }
+}
+
+function setupFlagForm() {
+  const form = document.querySelector("#flag-form");
+  const result = document.querySelector("#flag-result");
+  if (!form || !result) return;
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const answers = [
+      document.querySelector("#flag1").value.trim(),
+      document.querySelector("#flag2").value.trim(),
+      document.querySelector("#flag3").value.trim()
+    ];
+
+    const expected = [ADMIN_PASSWORD, PRICE_FLAG, STOCK_FLAG];
+    const solved = answers.filter((answer, index) => answer === expected[index]).length;
+
+    if (solved === expected.length) {
+      result.textContent = "3問すべて正解です。CIAの3要素を確認できました。";
+      result.className = "message success";
+      return;
+    }
+
+    result.textContent = solved + " / " + expected.length + " 問正解です。入力内容をもう一度確認してください。";
+    result.className = solved > 0 ? "message warning" : "message error";
+  });
+}
