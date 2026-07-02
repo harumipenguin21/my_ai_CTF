@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>管理者ページ | Juntendo Campus Shop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="admin">
+  <header class="site-header">
+    <a class="brand" href="groupA-index.html" aria-label="Juntendo Campus Shop トップ"><span class="brand-mark">J</span><span><span class="brand-name">Juntendo Campus Shop</span><span class="brand-sub">順天堂 教科書・教材購買ショップ</span></span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">メニュー</button>
+    <nav id="site-nav" class="site-nav" aria-label="メインナビゲーション"><a href="groupA-index.html">トップ</a><a href="groupA-shop.html">ショップ</a><a href="groupA-admin.html" aria-current="page">管理者ページ</a></nav>
+  </header>
+
+  <main class="page-shell">
+    <section class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Admin Console</p>
+        <h1>管理者ページ</h1>
+        <p>商品「健康データサイエンス入門」の価格と在庫数を変更できます。</p>
+      </div>
+      <div class="admin-status">
+        <p id="admin-login-status" class="message"></p>
+        <button class="button secondary" type="button" id="reset-button">初期状態に戻す</button>
+        <button class="button secondary" type="button" id="logout-button">ログアウト</button>
+      </div>
+      <div class="admin-layout">
+        <article class="product-summary">
+          <div class="product-cover cover-blue"><span>Health</span><strong>Data Science</strong></div>
+          <div>
+            <p class="eyebrow">Target Product</p>
+            <h2>健康データサイエンス入門</h2>
+            <p>初期価格：5000円 / 初期在庫数：100個</p>
+            <dl class="product-meta"><div><dt>現在の価格</dt><dd><span id="admin-current-price">5000</span>円</dd></div><div><dt>現在の在庫数</dt><dd><span id="admin-current-stock">100</span>個</dd></div></dl>
+            <p class="soldout-text hidden" id="admin-soldout">売り切れ：購入できません</p>
+          </div>
+        </article>
+        <div class="challenge-stack">
+          <section class="challenge-card" aria-labelledby="challenge2-title">
+            <p class="eyebrow">Challenge 2 / Integrity</p>
+            <h2 id="challenge2-title">問題2：商品価格を改ざんしてください。</h2>
+            <p>商品の価格を変更して、情報の正しさが失われる状態を確認します。</p>
+            <div class="hint-area groupA">
+              <button class="button secondary hint-toggle groupA" type="button" data-hint-target="groupA-hint2" aria-controls="groupA-hint2" aria-expanded="false">ヒントを見る</button>
+              <p class="hint-panel groupA" id="groupA-hint2" hidden>商品の価格は、ECサイトにとって重要な情報です。価格を変更できる入力欄や更新ボタンに注目してみましょう。</p>
+            </div>
+            <form id="price-form" class="control-form"><label>新しい価格<input type="number" id="new-price" min="0" step="1" value="5000"></label><button class="button primary" type="submit">価格を更新する</button><p class="message" id="price-message" role="status" aria-live="polite"></p></form>
+          </section>
+          <section class="challenge-card" aria-labelledby="challenge3-title">
+            <p class="eyebrow">Challenge 3 / Availability</p>
+            <h2 id="challenge3-title">問題3：商品を購入できない状態にしてください。</h2>
+            <p>在庫数を変更して、サービスが利用できない状態を確認します。</p>
+            <div class="hint-area groupA">
+              <button class="button secondary hint-toggle groupA" type="button" data-hint-target="groupA-hint3" aria-controls="groupA-hint3" aria-expanded="false">ヒントを見る</button>
+              <p class="hint-panel groupA" id="groupA-hint3" hidden>ECサイトでは、在庫がなくなると商品を購入できなくなることがあります。在庫数を変更できる場所を探してみましょう。</p>
+            </div>
+            <form id="stock-form" class="control-form"><label>新しい在庫数<input type="number" id="new-stock" min="0" step="1" value="100"></label><button class="button primary" type="submit">在庫を更新する</button><p class="message" id="stock-message" role="status" aria-live="polite"></p></form>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><p>Juntendo Campus Shop CTFは学習用の架空サイトです。外部通信は行いません。</p></footer>
+  <script src="script.js"></script>
+</body>
+</html>
