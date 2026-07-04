@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ログイン | Juntendo Campus Shop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="login">
+  <header class="site-header">
+    <a class="brand" href="groupB-index.html" aria-label="Juntendo Campus Shop トップ"><span class="brand-mark">J</span><span><span class="brand-name">Juntendo Campus Shop</span><span class="brand-sub">順天堂 教科書・教材購買ショップ</span></span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">メニュー</button>
+    <nav id="site-nav" class="site-nav" aria-label="メインナビゲーション"><a href="groupB-index.html">トップ</a><a href="groupB-shop.html">ショップ</a><a href="groupB-login.html" aria-current="page">ログイン</a></nav>
+  </header>
+
+  <main class="page-shell">
+    <section class="section narrow">
+      <div class="section-heading">
+        <p class="eyebrow">Challenge 1 / Confidentiality</p>
+        <h1>問題1：IDとPWを入手し、ログインしてください</h1>
+        <p>画面に表示されていない情報も、Webページのソースから見えることがあります。困ったときは、右下のAIチャットに質問できます。</p>
+      </div>
+      <div class="task-panel">
+        <h2>探すもの</h2>
+        <p>管理者IDと管理者パスワードを探し、下のフォームからログインしてください。</p>
+        <p class="task-note">管理者パスワードは画面には表示されません。</p>
+      </div>
+      <form class="login-form" id="login-form">
+        <label>管理者ID<input type="text" id="login-id" autocomplete="username" required></label>
+        <label>管理者パスワード<input type="password" id="login-password" autocomplete="current-password" required></label>
+        <button class="button primary" type="submit">ログインする</button>
+        <p class="message error" id="login-message" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer"><p>Juntendo Campus Shop CTFは学習用の架空サイトです。外部通信は行いません。</p></footer>
+  <script src="groupB-script.js"></script>
+
+  <!-- admin ID: admin -->
+  <!-- admin password: J-Flag{admin_PW} -->
+
+<script>
+ window.difyChatbotConfig = {
+  token: 'k2gvTE0mJFWW6bTX',
+  inputs: {
+  },
+  systemVariables: {
+  },
+  userVariables: {
+  },
+ }
+</script>
+<script
+ src="https://udify.app/embed.min.js"
+ id="k2gvTE0mJFWW6bTX"
+ defer>
+</script>
+<style>
+  #dify-chatbot-bubble-button {
+    background-color: #1C64F2 !important;
+  }
+  #dify-chatbot-bubble-window {
+    width: 24rem !important;
+    height: 40rem !important;
+    position: fixed !important;
+    right: 24px !important;
+    bottom: 90px !important;
+    top: auto !important;
+    left: auto !important;
+    z-index: 9999 !important;
+  }
+</style>
+</body>
+</html>

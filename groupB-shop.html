@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ショップ | Juntendo Campus Shop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="shop">
+  <header class="site-header">
+    <a class="brand" href="groupB-index.html" aria-label="Juntendo Campus Shop トップ"><span class="brand-mark">J</span><span><span class="brand-name">Juntendo Campus Shop</span><span class="brand-sub">順天堂 教科書・教材購買ショップ</span></span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">メニュー</button>
+    <nav id="site-nav" class="site-nav" aria-label="メインナビゲーション"><a href="groupB-index.html">トップ</a><a href="groupB-shop.html" aria-current="page">ショップ</a><a href="groupB-login.html">ログイン</a></nav>
+  </header>
+
+  <main class="page-shell">
+    <section class="section">
+      <div class="section-heading"><p class="eyebrow">Shop</p><h1>教科書・教材一覧</h1><p>順天堂の学生向けに、授業で使う教材や実習用品を扱う架空の購買ショップです。</p></div>
+      <div class="product-grid" id="product-grid">
+        <article class="product-card target-product"><div class="product-cover cover-blue"><span>Health</span><strong>Data Science</strong></div><div class="product-info"><h2>健康データサイエンス入門</h2><p>医療・健康データの基礎を学ぶ入門テキスト。</p><p class="price"><span id="shop-price">5000</span>円</p><p class="stock low-stock hidden" id="shop-low-stock">残りわずか</p><button class="button primary buy-button" id="buy-button" type="button">購入する</button><p class="soldout-text hidden" id="shop-soldout"><span>売り切れ</span><span>購入できません</span></p></div></article>
+        <article class="product-card"><div class="product-cover cover-white"><span>Python</span><strong>Practice</strong></div><div class="product-info"><h2>Python基礎演習ノート</h2><p>プログラミング演習で使う書き込み式ノート。</p><p class="price">2200円</p><button class="button primary" type="button">購入する</button></div></article>
+        <article class="product-card"><div class="product-cover cover-gray"><span>Stats</span><strong>Workbook</strong></div><div class="product-info"><h2>統計学ワークブック</h2><p>レポート作成に役立つ統計演習問題集。</p><p class="price">1800円</p><button class="button primary" type="button">購入する</button></div></article>
+        <article class="product-card"><div class="product-cover cover-coat"><span>Lab</span><strong>Coat</strong></div><div class="product-info"><h2>実験用白衣</h2><p>実習・実験で使う大学指定タイプの白衣。</p><p class="price">4200円</p><button class="button primary" type="button">購入する</button></div></article>
+        <article class="product-card"><div class="product-cover cover-note"><span>Campus</span><strong>Notebook</strong></div><div class="product-info"><h2>大学指定ノート</h2><p>講義・実習で使いやすいB5サイズの罫線ノート。</p><p class="price">380円</p><button class="button primary" type="button">購入する</button></div></article>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><p>Juntendo Campus Shop CTFは学習用の架空サイトです。外部通信は行いません。</p></footer>
+  <script src="groupB-script.js"></script>
+
+<script>
+ window.difyChatbotConfig = {
+  token: 'k2gvTE0mJFWW6bTX',
+  inputs: {
+  },
+  systemVariables: {
+  },
+  userVariables: {
+  },
+ }
+</script>
+<script
+ src="https://udify.app/embed.min.js"
+ id="k2gvTE0mJFWW6bTX"
+ defer>
+</script>
+<style>
+  #dify-chatbot-bubble-button {
+    background-color: #1C64F2 !important;
+  }
+  #dify-chatbot-bubble-window {
+    width: 24rem !important;
+    height: 40rem !important;
+    position: fixed !important;
+    right: 24px !important;
+    bottom: 90px !important;
+    top: auto !important;
+    left: auto !important;
+    z-index: 9999 !important;
+  }
+</style>
+</body>
+</html>

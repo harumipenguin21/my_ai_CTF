@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juntendo Campus Shop | WebセキュリティCTF</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="home">
+  <header class="site-header">
+    <a class="brand" href="groupB-index.html" aria-label="Juntendo Campus Shop トップ">
+      <span class="brand-mark">J</span>
+      <span>
+        <span class="brand-name">Juntendo Campus Shop</span>
+        <span class="brand-sub">順天堂 教科書・教材購買ショップ</span>
+      </span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">メニュー</button>
+    <nav id="site-nav" class="site-nav" aria-label="メインナビゲーション">
+      <a href="groupB-index.html" aria-current="page">トップ</a>
+      <a href="groupB-shop.html">ショップ</a>
+      <a href="groupB-login.html">ログイン</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">研究・学習用 静的CTF教材</p>
+        <h1>Webセキュリティの基本 CIA を、購買ショップで体験する</h1>
+        <p>架空の大学購買ショップを操作しながら、機密性・完全性・可用性に関する3つのミニ課題に挑戦します。</p>
+        <div class="hero-actions">
+          <a class="button primary" href="groupB-login.html">CTFを始める</a>
+          <a class="button secondary" href="groupB-shop.html">商品を見る</a>
+        </div>
+      </div>
+      <div class="shop-scene" aria-label="教科書、白衣、ノートが並ぶ購買ショップのイメージ">
+        <div class="shelf">
+          <span class="book blue"></span>
+          <span class="book white"></span>
+          <span class="book gray"></span>
+          <span class="coat"></span>
+          <span class="notebook"></span>
+        </div>
+        <div class="counter">
+          <span>Textbooks</span>
+          <strong>Campus Supplies</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <p class="eyebrow">CTF Flow</p>
+        <h2>進め方</h2>
+      </div>
+      <div class="steps">
+        <article class="step">
+          <span class="step-number">1</span>
+          <h3>ログイン情報を探す</h3>
+          <p>ログインページを調べ、管理者IDとパスワードを見つけます。</p>
+        </article>
+        <article class="step">
+          <span class="step-number">2</span>
+          <h3>価格を変更する</h3>
+          <p>管理者ページで商品価格を変更し、完全性の問題を確認します。</p>
+        </article>
+        <article class="step">
+          <span class="step-number">3</span>
+          <h3>在庫を変更する</h3>
+          <p>商品を購入できない状態にし、可用性の問題を確認します。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section cia-band" aria-label="CIAの説明">
+      <div>
+        <p class="eyebrow">CIA Triad</p>
+        <h2>情報セキュリティの3要素</h2>
+      </div>
+      <div class="cia-grid">
+        <article>
+          <span class="cia-letter">C</span>
+          <h3>Confidentiality / 機密性</h3>
+          <p>見せてはいけない情報を、許可された人だけが見られる状態にします。</p>
+        </article>
+        <article>
+          <span class="cia-letter">I</span>
+          <h3>Integrity / 完全性</h3>
+          <p>情報が正しく、勝手に書き換えられていない状態を守ります。</p>
+        </article>
+        <article>
+          <span class="cia-letter">A</span>
+          <h3>Availability / 可用性</h3>
+          <p>必要なときにサービスや情報を使える状態を保ちます。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Answer Sheet</p>
+        <h2>フラグ回答欄</h2>
+        <p>見つけたフラグを入力して確認できます。分からないことがあれば、右下のAIチャットに相談しながら進めてください。</p>
+      </div>
+      <form class="flag-form" id="flag-form">
+        <label>問題1<input type="text" id="flag1" autocomplete="off" placeholder="フラグを入力"><span class="form-hint">ログインページでIDとPWを探します。</span></label>
+        <label>問題2<input type="text" id="flag2" autocomplete="off" placeholder="フラグを入力"><span class="form-hint">商品価格を改ざんして入手します。</span></label>
+        <label>問題3<input type="text" id="flag3" autocomplete="off" placeholder="フラグを入力"><span class="form-hint">商品を購入できない状態にして入手します。</span></label>
+        <button class="button primary" type="submit">回答を確認する</button>
+        <p class="message" id="flag-result" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer"><p>Juntendo Campus Shop CTFは学習用の架空サイトです。外部通信は行いません。</p></footer>
+  <script src="groupB-script.js"></script>
+
+<script>
+ window.difyChatbotConfig = {
+  token: 'k2gvTE0mJFWW6bTX',
+  inputs: {
+  },
+  systemVariables: {
+  },
+  userVariables: {
+  },
+ }
+</script>
+<script
+ src="https://udify.app/embed.min.js"
+ id="k2gvTE0mJFWW6bTX"
+ defer>
+</script>
+<style>
+  #dify-chatbot-bubble-button {
+    background-color: #1C64F2 !important;
+  }
+  #dify-chatbot-bubble-window {
+    width: 24rem !important;
+    height: 40rem !important;
+    position: fixed !important;
+    right: 24px !important;
+    bottom: 90px !important;
+    top: auto !important;
+    left: auto !important;
+    z-index: 9999 !important;
+  }
+</style>
+</body>
+</html>
