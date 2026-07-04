@@ -225,8 +225,6 @@ function setupProblem3Page() {
   const form = document.querySelector("#terminal-form");
   const input = document.querySelector("#terminal-command");
   const output = document.querySelector("#terminal-output");
-  const shopLink = document.querySelector("#terminal-shop-link");
-
   if (openButton && terminal) {
     openButton.addEventListener("click", () => {
       terminal.classList.remove("hidden");
@@ -240,9 +238,8 @@ function setupProblem3Page() {
     const command = input.value.trim().toLowerCase();
     if (command === "deny all") {
       denyShopAccess();
-      output.textContent = "Access rule updated.\nAll access to the shop page has been denied.\nショップページを確認してください。";
+      output.textContent = "Access rule updated.\nAll access to the shop page has been denied.";
       output.className = "terminal-output success";
-      if (shopLink) shopLink.classList.remove("hidden");
       return;
     }
     output.textContent = "Command not recognized.";

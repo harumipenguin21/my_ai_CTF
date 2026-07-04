@@ -230,7 +230,20 @@ button:disabled { cursor: not-allowed; opacity: 0.68; transform: none; }
 .cia-grid { grid-template-columns: repeat(3, 1fr); margin-top: 22px; }
 
 .login-form, .flag-form, .control-form { display: grid; gap: 16px; }
-.flag-form { grid-template-columns: repeat(3, 1fr); align-items: end; }
+.flag-form { grid-template-columns: repeat(3, 1fr); align-items: stretch; }
+.flag-form label {
+  min-height: 138px;
+  grid-template-rows: auto 1fr auto;
+  align-content: stretch;
+}
+.flag-form input {
+  align-self: end;
+}
+.flag-form .form-hint {
+  min-height: 2.8em;
+  display: flex;
+  align-items: flex-start;
+}
 .flag-form .button, .flag-form .message { grid-column: 1 / -1; }
 label { display: grid; gap: 7px; color: var(--gray-900); font-weight: 800; }
 input { width: 100%; min-height: 44px; padding: 10px 12px; color: var(--gray-900); background: var(--white); border: 1px solid var(--gray-200); border-radius: 8px; }
