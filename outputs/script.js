@@ -1,7 +1,7 @@
 const ADMIN_ID = "admin";
 const ADMIN_PASSWORD = "J-Flag{admin_PW}";
 const PRICE_FLAG = "J-Flag{price_tampering}";
-const STOCK_FLAG = "J-Flag{sold_out}";
+const AVAILABILITY_FLAG = "J-Flag{availability_denied}";
 const INITIAL_PRODUCT = {
   price: 5000,
   stock: 100
@@ -9,6 +9,7 @@ const INITIAL_PRODUCT = {
 const productStorageVersion = 2;
 
 const productKey = "juntendoCampusShopProduct";
+const accessRuleKey = "juntendoCampusShopAccessRule-groupA";
 const loginKey = "juntendoCampusShopAdminLoggedIn";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -20,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (page === "admin") setupAdminPage();
   if (page === "shop") setupShopPage();
   if (page === "home") setupFlagForm();
+  if (page === "problem3") setupProblem3Page();
 });
 
 function setupNavigation() {
@@ -94,6 +96,18 @@ function resetProductState() {
   localStorage.removeItem(productKey);
 }
 
+function isShopAccessDenied() {
+  return localStorage.getItem(accessRuleKey) === "deny-all";
+}
+
+function denyShopAccess() {
+  localStorage.setItem(accessRuleKey, "deny-all");
+}
+
+function resetShopAccess() {
+  localStorage.removeItem(accessRuleKey);
+}
+
 function setupLoginPage() {
   const form = document.querySelector("#login-form");
   const message = document.querySelector("#login-message");
@@ -117,23 +131,27 @@ function setupLoginPage() {
   });
 }
 
-function setupAdminPage() {
+function requireAdminLogin() {
   const loggedIn = sessionStorage.getItem(loginKey) === "true";
-  const status = document.querySelector("#admin-login-status");
-
   if (!loggedIn) {
     window.location.replace("groupA-login.html");
-    return;
+    return false;
   }
+  return true;
+}
 
+function setupAdminPage() {
+  if (!requireAdminLogin()) return;
+
+  const status = document.querySelector("#admin-login-status");
   if (status) {
     status.textContent = "管理者としてログイン中。問題1のフラグ：" + ADMIN_PASSWORD;
     status.className = "message success";
   }
 
   renderAdminProduct();
+  setupProblem3Entry();
   setupPriceForm();
-  setupStockForm();
   setupResetButton();
   setupLogoutButton();
 }
@@ -143,14 +161,18 @@ function renderAdminProduct() {
   const price = document.querySelector("#admin-current-price");
   const stock = document.querySelector("#admin-current-stock");
   const priceInput = document.querySelector("#new-price");
-  const stockInput = document.querySelector("#new-stock");
   const soldout = document.querySelector("#admin-soldout");
 
   if (price) price.textContent = String(product.price);
   if (stock) stock.textContent = String(product.stock);
   if (priceInput) priceInput.value = String(product.price);
-  if (stockInput) stockInput.value = String(product.stock);
   if (soldout) soldout.classList.toggle("hidden", product.stock !== 0);
+}
+
+function setupProblem3Entry() {
+  const entry = document.querySelector("#challenge3-entry");
+  if (!entry) return;
+  entry.classList.toggle("hidden", getProductState().price !== 0);
 }
 
 function setupPriceForm() {
@@ -173,6 +195,7 @@ function setupPriceForm() {
     product.price = nextPrice;
     saveProductState(product);
     renderAdminProduct();
+    setupProblem3Entry();
 
     if (nextPrice === 0) {
       message.textContent = "価格を0円に更新しました。フラグ：" + PRICE_FLAG;
@@ -184,49 +207,18 @@ function setupPriceForm() {
   });
 }
 
-function setupStockForm() {
-  const form = document.querySelector("#stock-form");
-  const input = document.querySelector("#new-stock");
-  const message = document.querySelector("#stock-message");
-  if (!form || !input || !message) return;
-
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const nextStock = Number(input.value);
-
-    if (!Number.isInteger(nextStock) || nextStock < 0) {
-      message.textContent = "0以上の整数を入力してください。";
-      message.className = "message error";
-      return;
-    }
-
-    const product = getProductState();
-    product.stock = nextStock;
-    saveProductState(product);
-    renderAdminProduct();
-
-    if (nextStock === 0) {
-      message.textContent = "在庫を0個に更新しました。売り切れ、購入できません。フラグ：" + STOCK_FLAG;
-      message.className = "message success";
-    } else {
-      message.textContent = "在庫を" + nextStock + "個に更新しました。";
-      message.className = "message success";
-    }
-  });
-}
-
 function setupResetButton() {
   const button = document.querySelector("#reset-button");
   if (!button) return;
 
   button.addEventListener("click", () => {
     resetProductState();
+    resetShopAccess();
     renderAdminProduct();
+    setupProblem3Entry();
 
     const priceMessage = document.querySelector("#price-message");
-    const stockMessage = document.querySelector("#stock-message");
     if (priceMessage) priceMessage.textContent = "";
-    if (stockMessage) stockMessage.textContent = "";
   });
 }
 
@@ -240,7 +232,52 @@ function setupLogoutButton() {
   });
 }
 
+function setupProblem3Page() {
+  if (!requireAdminLogin()) return;
+
+  const openButton = document.querySelector("#open-terminal-button");
+  const terminal = document.querySelector("#terminal-panel");
+  const form = document.querySelector("#terminal-form");
+  const input = document.querySelector("#terminal-command");
+  const output = document.querySelector("#terminal-output");
+  const shopLink = document.querySelector("#terminal-shop-link");
+
+  if (openButton && terminal) {
+    openButton.addEventListener("click", () => {
+      terminal.classList.remove("hidden");
+      if (input) input.focus();
+    });
+  }
+
+  if (!form || !input || !output) return;
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const command = input.value.trim().toLowerCase();
+    if (command === "deny all") {
+      denyShopAccess();
+      output.textContent = "Access rule updated.\nAll access to the shop page has been denied.\nショップページを確認してください。";
+      output.className = "terminal-output success";
+      if (shopLink) shopLink.classList.remove("hidden");
+      return;
+    }
+    output.textContent = "Command not recognized.";
+    output.className = "terminal-output error";
+  });
+}
+
 function setupShopPage() {
+  const productGrid = document.querySelector("#product-grid");
+  const forbidden = document.querySelector("#forbidden-panel");
+
+  if (isShopAccessDenied()) {
+    if (productGrid) productGrid.classList.add("hidden");
+    if (forbidden) forbidden.classList.remove("hidden");
+    return;
+  }
+
+  if (productGrid) productGrid.classList.remove("hidden");
+  if (forbidden) forbidden.classList.add("hidden");
+
   const product = getProductState();
   const price = document.querySelector("#shop-price");
   const lowStock = document.querySelector("#shop-low-stock");
@@ -274,7 +311,7 @@ function setupFlagForm() {
       document.querySelector("#flag3").value.trim()
     ];
 
-    const expected = [ADMIN_PASSWORD, PRICE_FLAG, STOCK_FLAG];
+    const expected = [ADMIN_PASSWORD, PRICE_FLAG, AVAILABILITY_FLAG];
     const solved = answers.filter((answer, index) => answer === expected[index]).length;
 
     if (solved === expected.length) {

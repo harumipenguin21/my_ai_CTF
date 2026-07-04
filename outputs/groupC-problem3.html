@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>問題3 | Juntendo Campus Shop</title>
+  <link rel="stylesheet" href="style.css">
+<style>
+  .ai-support-card {
+    margin-top: 32px;
+    padding: 24px;
+    background: #ffffff;
+    border: 1px solid #d8e0ea;
+    border-radius: 8px;
+    box-shadow: 0 10px 28px rgba(23, 32, 51, 0.06);
+  }
+
+  .ai-support-card h2 {
+    margin-top: 0;
+    line-height: 1.35;
+  }
+
+  .ai-support-card p {
+    color: #42526a;
+  }
+
+  .ai-chat-frame {
+    margin-top: 16px;
+    width: 100%;
+    min-height: 700px;
+    border: 1px solid #dbe3ef;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #ffffff;
+  }
+</style>
+</head>
+<body data-page="problem3">
+  <header class="site-header">
+    <a class="brand" href="groupC-index.html" aria-label="Juntendo Campus Shop トップ"><span class="brand-mark">J</span><span><span class="brand-name">Juntendo Campus Shop</span><span class="brand-sub">順天堂 教科書・教材購買ショップ</span></span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">メニュー</button>
+    <nav id="site-nav" class="site-nav" aria-label="メインナビゲーション"><a href="groupC-index.html">トップ</a><a href="groupC-shop.html">ショップ</a><a href="groupC-admin.html">管理者ページ</a></nav>
+  </header>
+
+  <main class="page-shell">
+    <section class="section narrow">
+      <div class="section-heading">
+        <p class="eyebrow">Challenge 3</p>
+        <h1>問題3</h1>
+        <p>ショップページにアクセスできない状態にしてください。</p>
+      </div>
+      <div class="task-panel terminal-intro">
+        <p>管理者用ターミナルでは、ショップページのアクセス制御を変更できます。</p>
+        <p>適切なコマンドを入力して、利用者がショップページを使えない状態にしてください。</p>
+        <div class="terminal-actions">
+          <button class="button primary" type="button" id="open-terminal-button">ターミナルを開く</button>
+          <a class="button secondary" href="groupC-index.html">トップページへ戻る</a>
+          <a class="button secondary" href="groupC-shop.html">ショップページへ移動</a>
+        </div>
+      </div>
+      <section class="terminal-panel hidden" id="terminal-panel" aria-label="管理者用ターミナル">
+        <div class="terminal-title">Juntendo Shop Admin Terminal</div>
+        <p class="terminal-help">Type command...</p>
+        <form id="terminal-form" class="terminal-form">
+          <label class="terminal-line"><span>&gt;</span><input type="text" id="terminal-command" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="コマンド入力"></label>
+          <button class="button primary terminal-run" type="submit">実行</button>
+        </form>
+        <p class="terminal-output" id="terminal-output" role="status" aria-live="polite"></p>
+        <a class="button secondary hidden" id="terminal-shop-link" href="groupC-shop.html">ショップページへ戻る</a>
+      </section>
+    </section>
+    
+<section class="section ai-support-card">
+  <h2>AI相談エリア</h2>
+  <p>分からないことがあれば、ここでAIに質問できます。ただし、AIはフラグそのものは答えません。</p>
+  <div class="ai-chat-frame">
+    <iframe
+      src="https://udify.app/chatbot/k2gvTE0mJFWW6bTX"
+      style="width: 100%; height: 100%; min-height: 700px"
+      frameborder="0"
+      allow="microphone">
+    </iframe>
+  </div>
+</section>
+  </main>
+  <footer class="site-footer"><p>Juntendo Campus Shop CTFは学習用の架空サイトです。外部通信は行いません。</p></footer>
+  <script src="groupC-script.js"></script>
+</body>
+</html>

@@ -25,11 +25,11 @@
         <p>管理者IDと管理者パスワードを探し、下のフォームからログインしてください。</p>
         <p class="task-note">管理者パスワードは画面には表示されません。</p>
         <button class="button secondary hint-toggle groupA" type="button" data-hint-target="groupA-hint1" aria-controls="groupA-hint1" aria-expanded="false">ヒントを見る</button>
-        <p class="hint-panel groupA" id="groupA-hint1" hidden>WebページはHTMLで作られています。ページのソースコードを確認すると、画面には表示されていない情報が見つかることがあります。</p>
+        <p class="hint-panel groupA" id="groupA-hint1" hidden>IDとPW、すぐ忘れちゃうからWebページの裏側にメモしておくか、、、</p>
       </div>
       <form class="login-form" id="login-form">
-        <label>管理者ID<input type="text" id="login-id" autocomplete="username" required></label>
-        <label>管理者パスワード<input type="password" id="login-password" autocomplete="current-password" required></label>
+        <label>管理者ID<input type="text" id="login-id" autocomplete="off" required autocorrect="off" autocapitalize="off" spellcheck="false"></label>
+        <label>管理者パスワード<input type="password" id="login-password" autocomplete="off" required autocorrect="off" autocapitalize="off" spellcheck="false"></label>
         <button class="button primary" type="submit">ログインする</button>
         <p class="message error" id="login-message" role="status" aria-live="polite"></p>
       </form>

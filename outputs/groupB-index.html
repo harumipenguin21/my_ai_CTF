@@ -67,8 +67,8 @@
         </article>
         <article class="step">
           <span class="step-number">3</span>
-          <h3>在庫を変更する</h3>
-          <p>商品を購入できない状態にし、可用性の問題を確認します。</p>
+          <h3>アクセス制御を変更する</h3>
+          <p>ショップページにアクセスできない状態を確認します。</p>
         </article>
       </div>
     </section>
@@ -104,9 +104,9 @@
         <p>見つけたフラグを入力して確認できます。分からないことがあれば、右下のAIチャットに相談しながら進めてください。</p>
       </div>
       <form class="flag-form" id="flag-form">
-        <label>問題1<input type="text" id="flag1" autocomplete="off" placeholder="フラグを入力"><span class="form-hint">ログインページでIDとPWを探します。</span></label>
-        <label>問題2<input type="text" id="flag2" autocomplete="off" placeholder="フラグを入力"><span class="form-hint">商品価格を改ざんして入手します。</span></label>
-        <label>問題3<input type="text" id="flag3" autocomplete="off" placeholder="フラグを入力"><span class="form-hint">商品を購入できない状態にして入手します。</span></label>
+        <label>問題1<input type="text" id="flag1" autocomplete="off" placeholder="フラグを入力" autocorrect="off" autocapitalize="off" spellcheck="false"><span class="form-hint">ログインページでIDとPWを探します。</span></label>
+        <label>問題2<input type="text" id="flag2" autocomplete="off" placeholder="フラグを入力" autocorrect="off" autocapitalize="off" spellcheck="false"><span class="form-hint">商品価格を改ざんして入手します。</span></label>
+        <label>問題3<input type="text" id="flag3" autocomplete="off" placeholder="フラグを入力" autocorrect="off" autocapitalize="off" spellcheck="false"><span class="form-hint">ショップページにアクセスできない状態にして入手します。</span></label>
         <button class="button primary" type="submit">回答を確認する</button>
         <p class="message" id="flag-result" role="status" aria-live="polite"></p>
       </form>
@@ -139,6 +139,12 @@
   #dify-chatbot-bubble-window {
     width: 24rem !important;
     height: 40rem !important;
+    position: fixed !important;
+    right: 24px !important;
+    bottom: 90px !important;
+    top: auto !important;
+    left: auto !important;
+    z-index: 9999 !important;
   }
 </style>
 </body>

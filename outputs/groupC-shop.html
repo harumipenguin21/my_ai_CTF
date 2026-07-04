@@ -37,6 +37,7 @@
 </style>
 </head>
 <body data-page="shop">
+  <!-- admin note: access control command = deny all -->
   <header class="site-header">
     <a class="brand" href="groupC-index.html" aria-label="Juntendo Campus Shop トップ"><span class="brand-mark">J</span><span><span class="brand-name">Juntendo Campus Shop</span><span class="brand-sub">順天堂 教科書・教材購買ショップ</span></span></a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">メニュー</button>
@@ -46,6 +47,12 @@
   <main class="page-shell">
     <section class="section">
       <div class="section-heading"><p class="eyebrow">Shop</p><h1>教科書・教材一覧</h1><p>順天堂の学生向けに、授業で使う教材や実習用品を扱う架空の購買ショップです。分からないことがあれば、AIに相談しながら進めてください。</p></div>
+      <div class="forbidden-panel hidden" id="forbidden-panel" role="alert">
+        <h2>403 Forbidden</h2>
+        <p>このサイトは利用できません。</p>
+        <p>アクセス制御ルールにより、ショップページへのアクセスが拒否されています。</p>
+        <p class="forbidden-flag">FLAG：J-Flag{availability_denied}</p>
+      </div>
       <div class="product-grid" id="product-grid">
         <article class="product-card target-product"><div class="product-cover cover-blue"><span>Health</span><strong>Data Science</strong></div><div class="product-info"><h2>健康データサイエンス入門</h2><p>医療・健康データの基礎を学ぶ入門テキスト。</p><p class="price"><span id="shop-price">5000</span>円</p><p class="stock low-stock hidden" id="shop-low-stock">残りわずか</p><button class="button primary buy-button" id="buy-button" type="button">購入する</button><p class="soldout-text hidden" id="shop-soldout"><span>売り切れ</span><span>購入できません</span></p></div></article>
         <article class="product-card"><div class="product-cover cover-white"><span>Python</span><strong>Practice</strong></div><div class="product-info"><h2>Python基礎演習ノート</h2><p>プログラミング演習で使う書き込み式ノート。</p><p class="price">2200円</p><button class="button primary" type="button">購入する</button></div></article>

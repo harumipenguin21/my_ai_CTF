@@ -302,3 +302,125 @@ input:focus { border-color: var(--blue-600); outline: 3px solid rgba(19, 104, 19
   .product-card { grid-template-columns: 1fr; }
   .product-cover { width: min(180px, 100%); }
 }
+
+.problem3-entry .button {
+  justify-self: start;
+  margin-top: 14px;
+}
+
+.terminal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.terminal-panel {
+  display: grid;
+  gap: 14px;
+  margin-top: 24px;
+  padding: 20px;
+  color: #d9f8df;
+  background: #07130d;
+  border: 1px solid #1f5d37;
+  border-radius: 8px;
+  box-shadow: 0 16px 36px rgba(7, 19, 13, 0.22);
+  font-family: Consolas, "Courier New", monospace;
+}
+
+.terminal-title {
+  color: #8ff0a4;
+  font-weight: 800;
+}
+
+.terminal-help {
+  margin: 0;
+  color: #b6d8bf;
+}
+
+.terminal-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.terminal-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #8ff0a4;
+  font-weight: 800;
+}
+
+.terminal-line input {
+  min-height: 42px;
+  color: #e8ffed;
+  background: #0d2215;
+  border-color: #2d7a49;
+  font-family: Consolas, "Courier New", monospace;
+}
+
+.terminal-line input:focus {
+  border-color: #8ff0a4;
+  outline: 3px solid rgba(143, 240, 164, 0.18);
+}
+
+.terminal-output {
+  min-height: 4.8em;
+  margin: 0;
+  white-space: pre-line;
+  color: #d9f8df;
+  font-weight: 800;
+}
+
+.terminal-output.success {
+  color: #8ff0a4;
+}
+
+.terminal-output.error {
+  color: #ffb4ab;
+}
+
+.terminal-run {
+  min-width: 92px;
+}
+
+.forbidden-panel {
+  padding: 30px;
+  color: var(--gray-900);
+  background: #ffffff;
+  border: 1px solid var(--gray-200);
+  border-left: 6px solid var(--danger);
+  border-radius: 8px;
+  box-shadow: 0 10px 28px rgba(23, 32, 51, 0.06);
+}
+
+.forbidden-panel h2 {
+  margin: 0 0 10px;
+  color: var(--danger);
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+}
+
+.forbidden-panel p {
+  margin: 6px 0;
+  color: var(--gray-700);
+  font-weight: 800;
+}
+
+.forbidden-panel .forbidden-flag {
+  margin-top: 18px;
+  color: var(--success);
+  font-size: 1.1rem;
+  word-break: break-word;
+}
+
+@media (max-width: 620px) {
+  .terminal-form {
+    grid-template-columns: 1fr;
+  }
+
+  .terminal-run {
+    width: 100%;
+  }
+}

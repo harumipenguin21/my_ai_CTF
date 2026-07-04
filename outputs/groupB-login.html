@@ -26,8 +26,8 @@
         <p class="task-note">管理者パスワードは画面には表示されません。</p>
       </div>
       <form class="login-form" id="login-form">
-        <label>管理者ID<input type="text" id="login-id" autocomplete="username" required></label>
-        <label>管理者パスワード<input type="password" id="login-password" autocomplete="current-password" required></label>
+        <label>管理者ID<input type="text" id="login-id" autocomplete="off" required autocorrect="off" autocapitalize="off" spellcheck="false" name="ctf_user_input"></label>
+        <label>管理者パスワード<input type="password" id="login-password" autocomplete="off" required autocorrect="off" autocapitalize="off" spellcheck="false" name="ctf_secret_input"></label>
         <button class="button primary" type="submit">ログインする</button>
         <p class="message error" id="login-message" role="status" aria-live="polite"></p>
       </form>
@@ -63,6 +63,12 @@
   #dify-chatbot-bubble-window {
     width: 24rem !important;
     height: 40rem !important;
+    position: fixed !important;
+    right: 24px !important;
+    bottom: 90px !important;
+    top: auto !important;
+    left: auto !important;
+    z-index: 9999 !important;
   }
 </style>
 </body>

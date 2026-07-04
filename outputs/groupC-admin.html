@@ -48,7 +48,7 @@
       <div class="section-heading">
         <p class="eyebrow">Admin Console</p>
         <h1>管理者ページ</h1>
-        <p>商品「健康データサイエンス入門」の価格と在庫数を変更できます。分からないことがあれば、AIに相談しながら進めてください。</p>
+        <p>商品「健康データサイエンス入門」の価格とショップページのアクセス制御を確認できます。分からないことがあれば、AIに相談しながら進めてください。</p>
       </div>
       <div class="admin-status">
         <p id="admin-login-status" class="message"></p>
@@ -71,13 +71,13 @@
             <p class="eyebrow">Challenge 2 / Integrity</p>
             <h2 id="challenge2-title">問題2：商品価格を改ざんしてください。</h2>
             <p>商品の価格を変更して、情報の正しさが失われる状態を確認します。</p>
-            <form id="price-form" class="control-form"><label>新しい価格<input type="number" id="new-price" min="0" step="1" value="5000"></label><button class="button primary" type="submit">価格を更新する</button><p class="message" id="price-message" role="status" aria-live="polite"></p></form>
+            <form id="price-form" class="control-form"><label>新しい価格<input type="number" id="new-price" min="0" step="1" value="5000" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></label><button class="button primary" type="submit">価格を更新する</button><p class="message" id="price-message" role="status" aria-live="polite"></p></form>
           </section>
-          <section class="challenge-card" aria-labelledby="challenge3-title">
-            <p class="eyebrow">Challenge 3 / Availability</p>
-            <h2 id="challenge3-title">問題3：商品を購入できない状態にしてください。</h2>
-            <p>在庫数を変更して、サービスが利用できない状態を確認します。</p>
-            <form id="stock-form" class="control-form"><label>新しい在庫数<input type="number" id="new-stock" min="0" step="1" value="100"></label><button class="button primary" type="submit">在庫を更新する</button><p class="message" id="stock-message" role="status" aria-live="polite"></p></form>
+          <section class="challenge-card hidden" id="challenge3-entry" aria-labelledby="challenge3-title">
+            <p class="eyebrow">Challenge 3</p>
+            <h2 id="challenge3-title">問題3へ進む</h2>
+            <p>次の問題では、ショップページにアクセスできない状態を作ります。</p>
+            <a class="button primary" href="groupC-problem3.html">問題3へ進む</a>
           </section>
         </div>
       </div>
