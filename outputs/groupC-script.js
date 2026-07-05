@@ -248,17 +248,13 @@ function setupProblem3Page() {
 }
 
 function setupShopResetButton() {
-  const buttons = Array.from(document.querySelectorAll(".reset-shop-state"));
-  const primaryButton = document.getElementById("reset-shop-state");
-  if (primaryButton && !buttons.includes(primaryButton)) buttons.push(primaryButton);
-  if (buttons.length === 0) return;
+  const resetButton = document.getElementById("reset-shop-state");
+  if (!resetButton) return;
 
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      resetProductState();
-      resetShopAccess();
-      window.location.reload();
-    });
+  resetButton.addEventListener("click", () => {
+    localStorage.removeItem(productKey);
+    localStorage.removeItem(accessRuleKey);
+    window.location.reload();
   });
 }
 

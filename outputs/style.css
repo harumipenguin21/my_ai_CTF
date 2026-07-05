@@ -457,11 +457,6 @@ input:focus { border-color: var(--blue-600); outline: 3px solid rgba(19, 104, 19
   min-width: 150px;
 }
 
-.forbidden-actions {
-  display: flex;
-  justify-content: flex-start;
-  margin-top: 18px;
-}
 
 @media (max-width: 620px) {
   .shop-heading-row {
