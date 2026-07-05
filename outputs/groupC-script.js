@@ -247,7 +247,23 @@ function setupProblem3Page() {
   });
 }
 
+function setupShopResetButton() {
+  const buttons = Array.from(document.querySelectorAll(".reset-shop-state"));
+  const primaryButton = document.getElementById("reset-shop-state");
+  if (primaryButton && !buttons.includes(primaryButton)) buttons.push(primaryButton);
+  if (buttons.length === 0) return;
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      resetProductState();
+      resetShopAccess();
+      window.location.reload();
+    });
+  });
+}
+
 function setupShopPage() {
+  setupShopResetButton();
   const productGrid = document.querySelector("#product-grid");
   const forbidden = document.querySelector("#forbidden-panel");
 

@@ -16,12 +16,20 @@
 
   <main class="page-shell">
     <section class="section">
-      <div class="section-heading"><p class="eyebrow">Shop</p><h1>教科書・教材一覧</h1><p>順天堂の学生向けに、授業で使う教材や実習用品を扱う架空の購買ショップです。</p></div>
+      <div class="section-heading shop-heading">
+        <p class="eyebrow">Shop</p>
+        <div class="shop-heading-row">
+          <h1>教科書・教材一覧</h1>
+          <button id="reset-shop-state" class="button secondary reset-button reset-shop-state" type="button">初期状態に戻る</button>
+        </div>
+        <p>順天堂の学生向けに、授業で使う教材や実習用品を扱う架空の購買ショップです。</p>
+      </div>
       <div class="forbidden-panel hidden" id="forbidden-panel" role="alert">
         <h2>403 Forbidden</h2>
         <p>このサイトは利用できません。</p>
         <p>アクセス制御ルールにより、ショップページへのアクセスが拒否されています。</p>
         <p class="forbidden-flag">FLAG：J-Flag{availability_denied}</p>
+        <div class="forbidden-actions"><button id="reset-shop-state-forbidden" class="button secondary reset-button reset-shop-state" type="button">初期状態に戻る</button></div>
       </div>
       <div class="product-grid" id="product-grid">
         <article class="product-card target-product"><div class="product-cover cover-blue"><span>Health</span><strong>Data Science</strong></div><div class="product-info"><h2>健康データサイエンス入門</h2><p>医療・健康データの基礎を学ぶ入門テキスト。</p><p class="price"><span id="shop-price">5000</span>円</p><p class="stock low-stock hidden" id="shop-low-stock">残りわずか</p><button class="button primary buy-button" id="buy-button" type="button">購入する</button><p class="soldout-text hidden" id="shop-soldout"><span>売り切れ</span><span>購入できません</span></p></div></article>

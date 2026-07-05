@@ -255,6 +255,7 @@ input:focus { border-color: var(--blue-600); outline: 3px solid rgba(19, 104, 19
 .message.warning { color: var(--warning); }
 .notice { margin-bottom: 20px; color: var(--blue-700); background: var(--blue-100); font-weight: 800; }
 
+
 .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .product-card { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 18px; padding: 18px; }
 .target-product { grid-column: 1 / -1; }
@@ -434,6 +435,41 @@ input:focus { border-color: var(--blue-600); outline: 3px solid rgba(19, 104, 19
   }
 
   .terminal-run {
+    width: 100%;
+  }
+}
+
+
+.shop-heading {
+  display: grid;
+  gap: 10px;
+}
+
+.shop-heading-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.reset-button {
+  flex: 0 0 auto;
+  min-width: 150px;
+}
+
+.forbidden-actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 18px;
+}
+
+@media (max-width: 620px) {
+  .shop-heading-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .reset-button {
     width: 100%;
   }
 }
