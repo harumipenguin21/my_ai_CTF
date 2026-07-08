@@ -214,6 +214,22 @@ h1, h2, h3, p { margin-top: 0; }
 .link-card.is-complete .done-mark { display: inline; }
 .link-card.is-complete .button.primary { background: var(--success); }
 
+.bottom-progress {
+  display: flex;
+  justify-content: center;
+  margin-top: 18px;
+  padding: 14px 16px;
+  color: var(--purple-900);
+  background: var(--purple-050);
+  border: 1px solid var(--gray-300);
+  border-radius: 10px;
+  font-weight: 800;
+}
+
+.hidden {
+  display: none !important;
+}
+
 .complete-message {
   text-align: center;
   background: linear-gradient(180deg, var(--white), var(--purple-050));

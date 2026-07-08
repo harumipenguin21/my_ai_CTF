@@ -11,7 +11,6 @@
     <div class="portal-header__inner">
       <p class="portal-kicker">Juntendo Security Learning Study</p>
       <h1>CTF形式のセキュリティ学習実験ポータル</h1>
-      <p class="portal-subtitle">AI支援がセキュリティ学習に与える影響を調べるための実験ページです。</p>
     </div>
   </header>
 
@@ -97,11 +96,15 @@
           <a class="button primary step-link" data-step="survey" href="https://docs.google.com/forms/d/e/1FAIpQLScDq8VB9bGVNubp6zM66e1iTm6OqqYkNVx-aQjh8mtGF4CUSw/formResponse" target="_blank" rel="noopener noreferrer"><span>事後アンケートへ進む</span><strong class="done-mark">完了済み</strong></a>
         </article>
       </div>
+
+      <div class="bottom-progress" aria-label="下部の進行状況">
+        <span>進行状況：<strong class="progress-count-secondary">0 / 4 完了</strong></span>
+      </div>
     </section>
 
-    <section class="complete-message">
-      <h2>すべてのステップが完了したら、実験は終了です。</h2>
-      <p>ご協力ありがとうございました。</p>
+    <section class="complete-message hidden" id="complete-message" aria-live="polite">
+      <h2>すべてのステップを完了しました！</h2>
+      <p>ご協力ありがとうございました！</p>
     </section>
   </main>
 

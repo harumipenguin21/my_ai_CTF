@@ -37,11 +37,16 @@ function updateProgressUI() {
   const progress = normalizeProgress(loadProgress());
   saveProgress(progress);
   const completeCount = trackedSteps.filter((step) => isStepComplete(progress, step)).length;
-  const count = document.querySelector("#progress-count");
+  const progressText = completeCount + " / " + trackedSteps.length + " 完了";
+  const counts = document.querySelectorAll("#progress-count, .progress-count-secondary");
   const bar = document.querySelector("#progress-bar-fill");
+  const completeMessage = document.querySelector("#complete-message");
 
-  if (count) count.textContent = completeCount + " / " + trackedSteps.length + " 完了";
+  counts.forEach((count) => {
+    count.textContent = progressText;
+  });
   if (bar) bar.style.width = (completeCount / trackedSteps.length) * 100 + "%";
+  if (completeMessage) completeMessage.classList.toggle("hidden", completeCount !== trackedSteps.length);
 
   document.querySelectorAll("[data-step-card]").forEach((card) => {
     const step = card.dataset.stepCard;
