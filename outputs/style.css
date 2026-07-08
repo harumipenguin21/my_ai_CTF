@@ -468,3 +468,19 @@ input:focus { border-color: var(--blue-600); outline: 3px solid rgba(19, 104, 19
     width: 100%;
   }
 }
+
+
+.challenge-title-inline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.55em;
+}
+
+.challenge-title-inline span:first-child {
+  white-space: nowrap;
+}
+
+.challenge-title-inline span:last-child {
+  min-width: 0;
+}
