@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CTF形式のセキュリティ学習実験ポータル</title>
+  <link rel="stylesheet" href="portal.css">
+</head>
+<body>
+  <header class="portal-header">
+    <div class="portal-header__inner">
+      <p class="portal-kicker">Juntendo Security Learning Study</p>
+      <h1>CTF形式のセキュリティ学習実験ポータル</h1>
+    </div>
+  </header>
+
+  <main class="portal-main">
+    <section class="progress-panel" aria-label="進行状況">
+      <div>
+        <p class="section-label">Progress</p>
+        <h2>進行状況：<span id="progress-count">0 / 4 完了</span></h2>
+      </div>
+      <div class="progress-actions">
+        <div class="progress-bar" aria-hidden="true"><span id="progress-bar-fill"></span></div>
+        <button class="button ghost" type="button" id="reset-progress">進行状況をリセット</button>
+      </div>
+    </section>
+
+    <section class="portal-section intro-section">
+      <p class="section-label">Overview</p>
+      <h2>実験説明</h2>
+      <div class="prose">
+        <p>これから、Webセキュリティに関するCTF形式の演習を行います。</p>
+        <p>CTFとは「Capture The Flag」の略で、日本語では「旗を取る」という意味があります。セキュリティ学習におけるCTFでは、実際に旗を取るのではなく、問題の中に隠された「フラグ」と呼ばれる文字列を見つけることを目標にします。</p>
+        <p>参加者は、問題文を読み、Webサイト内を操作したり、表示されている情報を確認したりしながら、フラグを探します。フラグを見つけたら、指定された入力欄に入力することで問題を解く形式です。</p>
+        <p>今回の演習では、実験用に作成されたWebサイトを使い、情報セキュリティの基本的な考え方である「機密性」「完全性」「可用性」に関係する問題に取り組みます。</p>
+        <p>問題文をよく読み、サイト内を確認しながら進めてください。分からない場合は、割り当てられたグループに応じて、指定された支援方法を使って構いません。</p>
+        <p>なお、この演習は学習用に作成された実験環境です。実際のWebサイトに対して同じような操作を行うことは禁止されています。用意された演習サイト内でのみ取り組んでください。</p>
+      </div>
+    </section>
+
+    <section class="portal-section">
+      <p class="section-label">Flow</p>
+      <h2>実験の流れ</h2>
+      <div class="step-grid">
+        <article class="step-card"><span>Step 1</span><h3>事前テスト</h3><p>演習前の知識を確認します。</p></article>
+        <article class="step-card"><span>Step 2</span><h3>CTF演習</h3><p>割り当てられたグループの演習サイトで問題に取り組みます。</p></article>
+        <article class="step-card"><span>Step 3</span><h3>事後テスト</h3><p>演習後の理解度を確認します。</p></article>
+        <article class="step-card"><span>Step 4</span><h3>事後アンケート</h3><p>演習のやりやすさや学習効果について回答します。</p></article>
+      </div>
+    </section>
+
+    <section class="portal-section notice-section">
+      <p class="section-label">Notes</p>
+      <h2>参加者への注意事項</h2>
+      <ul class="notice-list">
+        <li>事前テスト、CTF演習、事後テスト、事後アンケートの順番で進めてください。</li>
+        <li>Googleフォームに回答した後は、このポータルサイトに戻って次のステップへ進んでください。</li>
+        <li>CTF演習は、全問解き終わった場合、または指定された時間になった場合に終了してください。</li>
+        <li>解き終わらなかった場合でも、必ず事後テストと事後アンケートに回答してください。</li>
+        <li>実際のWebサイトに対して、演習と同じような操作を行わないでください。</li>
+        <li>参加者は、実験者から指定されたグループのCTF演習サイトに進んでください。</li>
+      </ul>
+    </section>
+
+    <section class="portal-section links-section">
+      <p class="section-label">Links</p>
+      <h2>実験リンク</h2>
+      <p class="helper-text">Googleフォームの回答が終わったら、このポータルサイトに戻って次のステップへ進んでください。</p>
+
+      <div class="link-stack">
+        <article class="link-card" data-step-card="pretest">
+          <div><span class="step-badge">1</span><h3>事前テスト</h3><p>演習前の知識を確認します。</p></div>
+          <a class="button primary step-link" data-step="pretest" href="https://docs.google.com/forms/d/e/1FAIpQLSd0GSuT1AaM5hBWw7AgjUJJNxFJcoAUXoYwTNJMXJrW8mglog/viewform" target="_blank" rel="noopener noreferrer"><span>事前テストへ進む</span><strong class="done-mark">完了済み</strong></a>
+        </article>
+
+        <article class="link-card ctf-choice" data-step-card="groupA">
+          <div><span class="step-badge">2A</span><h3>groupAのCTF演習</h3><p>固定ヒントを見ながら問題に取り組むグループです。</p></div>
+          <a class="button primary step-link" data-step="groupA" href="https://harumipenguin21.github.io/my_ai_CTF/outputs/groupA-shop.html" target="_blank" rel="noopener noreferrer"><span>groupAのCTF演習へ進む</span><strong class="done-mark">完了済み</strong></a>
+        </article>
+
+        <article class="link-card ctf-choice" data-step-card="groupB">
+          <div><span class="step-badge">2B</span><h3>groupBのCTF演習</h3><p>AIチャットボットに質問しながら問題に取り組むグループです。</p></div>
+          <a class="button primary step-link" data-step="groupB" href="https://harumipenguin21.github.io/my_ai_CTF/outputs/groupB-index.html" target="_blank" rel="noopener noreferrer"><span>groupBのCTF演習へ進む</span><strong class="done-mark">完了済み</strong></a>
+        </article>
+
+        <div class="group-note">参加者は、実験者から指定されたグループのCTF演習サイトに進んでください。</div>
+
+        <article class="link-card" data-step-card="posttest">
+          <div><span class="step-badge">3</span><h3>事後テスト</h3><p>演習後の理解度を確認します。</p></div>
+          <a class="button primary step-link" data-step="posttest" href="https://docs.google.com/forms/d/e/1FAIpQLSewn-1vjg58Hb25W5nJGhvsBrar3kmx63i_KLLkBc6Qkkxtcw/viewform" target="_blank" rel="noopener noreferrer"><span>事後テストへ進む</span><strong class="done-mark">完了済み</strong></a>
+        </article>
+
+        <article class="link-card" data-step-card="survey">
+          <div><span class="step-badge">4</span><h3>事後アンケート</h3><p>演習のやりやすさや学習効果について回答します。</p></div>
+          <a class="button primary step-link" data-step="survey" href="https://docs.google.com/forms/d/e/1FAIpQLScDq8VB9bGVNubp6zM66e1iTm6OqqYkNVx-aQjh8mtGF4CUSw/formResponse" target="_blank" rel="noopener noreferrer"><span>事後アンケートへ進む</span><strong class="done-mark">完了済み</strong></a>
+        </article>
+      </div>
+
+      <div class="bottom-progress" aria-label="下部の進行状況">
+        <span>進行状況：<strong class="progress-count-secondary">0 / 4 完了</strong></span>
+      </div>
+    </section>
+
+    <section class="complete-message hidden" id="complete-message" aria-live="polite">
+      <h2>すべてのステップを完了しました！</h2>
+      <p>ご協力ありがとうございました！</p>
+    </section>
+  </main>
+
+  <script src="portal.js"></script>
+</body>
+</html>
